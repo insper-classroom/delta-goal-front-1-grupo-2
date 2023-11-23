@@ -1,0 +1,7 @@
+import streamlit as st
+import requests
+from desfechos_quebra_linha import exibir_grafico_desfechos_quebra_linha, exibir_grafico_desfechos_quebra_linha_por_time
+
+exibir_grafico_desfechos_quebra_linha()
+
+exibir_grafico_desfechos_quebra_linha_por_time()
