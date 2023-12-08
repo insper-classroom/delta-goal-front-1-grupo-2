@@ -1,11 +1,11 @@
 import streamlit as st 
-from api_utils import cadastra_jogo
+from api_utils import *
 import os
 
 
 def save_uploaded_file(uploadedfile):
   with open(os.path.join("./photos",uploadedfile.name),"wb") as f:
-     f.write(uploadedfile.getbuffer())
+    f.write(uploadedfile.getbuffer())
   return True
 
 st.title('Carregue Novos jogos para o sistema aqui')
@@ -79,7 +79,15 @@ with st.container():
                 data = {'link_video': link_video ,'link_csv': link_csv, 'time1':time1, 'time2': time2}
                 files= {'logo1':open(f'./photos/{logo1.name}','rb'),
                         'logo2':open(f'./photos/{logo2.name}','rb')}
-                salvou, mensagem = cadastra_jogo(data,files)
-                st.write('Seus dados foram enviados com sucesso e estão sendo processados. Esse processo pode demorar alguns horas')
+                salvou1, mensagem = cadastra_jogo_dados(data)
+                if not(salvou1): 
+                    st.error(mensagem)
+                times={'time1':time1, 'time2': time2}
+                salvou2, mensagem = cadastra_jogo_logos(times,files)
+                if salvou2 and salvou1:
+                    st.write('Seus dados foram enviados com sucesso e estão sendo processados. Esse processo pode demorar alguns horas')
+                else: 
+                    st.error(mensagem)
+
             else: 
                 st.error('todos os dados devem ser preenchidos')
