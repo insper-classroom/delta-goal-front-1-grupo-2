@@ -52,7 +52,7 @@ with st.expander('Instruções para o correto preenchimento do formulário'):
     <h2 class='subtitulo'>Como posso colocar meu arquivo no google drive? </h2>
     <p>
     <li> Faça uma conta no gmail e abra o drive</li>
-    <li> coloque seu vídeo no seu drive e deixe esse vídeo PÚBLICO. Esse processo pode demorar alguns minutos</li>
+    <li> Coloque seu vídeo no seu drive e deixe esse vídeo PÚBLICO. Esse processo pode demorar alguns minutos</li>
     </p>
     <h3 class='texto'> depois de seguir esses passos, basta colocar o link para o arquivo csv no formulário </h3>
     
@@ -67,8 +67,8 @@ with st.container():
         logo1 = st.file_uploader('Coloque aqui a logo do time acima em formato PNG',key='time1')
         time2 = st.text_input('Digite o nome do segundo time')
         logo2 = st.file_uploader('Coloque aqui a logo do time acima em formato PNG',key='time2')
-        link_video = st.text_input("insira o link para o video do jogo")
-        link_csv = st.text_input("insira o link para arquivo csv dos dados bruto")
+        link_video = st.text_input("Insira o link para o video do jogo")
+        link_csv = st.text_input("Insira o link para arquivo csv dos dados bruto")
         lista_dados = [time1,logo1,logo2,time2,link_video,link_csv]
 
 
@@ -82,4 +82,4 @@ with st.container():
                 salvou, mensagem = cadastra_jogo(data,files)
                 st.write('Seus dados foram enviados com sucesso e estão sendo processados. Esse processo pode demorar alguns horas')
             else: 
-                st.error('todos os dados devem ser preenchidos')
+                st.error('Todos os dados devem ser preenchidos')
