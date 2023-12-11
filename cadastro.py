@@ -79,15 +79,21 @@ with st.container():
                 data = {'link_video': link_video ,'link_csv': link_csv, 'time1':time1, 'time2': time2}
                 files= {'logo1':open(f'./photos/{logo1.name}','rb'),
                         'logo2':open(f'./photos/{logo2.name}','rb')}
-                salvou1, mensagem = cadastra_jogo_dados(data)
+                salvou1, mensagem1 = cadastra_jogo_dados(data)
                 if not(salvou1): 
-                    st.error(mensagem)
+                    st.error(mensagem1)
                 times={'time1':time1, 'time2': time2}
-                salvou2, mensagem = cadastra_jogo_logos(times,files)
+                salvou2, mensagem2 = cadastra_jogo_logos(times,files)
                 if salvou2 and salvou1:
                     st.write('Seus dados foram enviados com sucesso e estão sendo processados. Esse processo pode demorar alguns horas')
+                    salvou3, mensagem3 = cria_json(mensagem1['_id'])
+                    salvou4, mensagem4 = cadastra_json(mensagem3)
+                    if salvou3 and salvou4:
+                        st.write('Seus dados foram processados com sucesso')
+                    else:
+                        st.error(mensagem4)
                 else: 
-                    st.error(mensagem)
+                    st.error(mensagem2)
 
             else: 
                 st.error('Todos os dados devem ser preenchidos')

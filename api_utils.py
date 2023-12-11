@@ -17,3 +17,20 @@ def cadastra_jogo_logos(nomes,files):
         return True, response.json()
     except Exception as e:
         return False, {"message": str(e)}
+    
+def cria_json(id_jogo):
+    try:
+        response = requests.get(f"{BASE_URL}jogo/{id_jogo}")
+        response.raise_for_status()
+        return True, response.json()
+    except Exception as e:
+        return False, {"message": str(e)}
+    
+
+def cadastra_json(json):
+    try:
+        response = requests.post(f"{BASE_URL}jogo/json",json=json)
+        response.raise_for_status()
+        return True, response.json()
+    except Exception as e:
+        return False, {"message": str(e)}
